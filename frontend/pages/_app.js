@@ -1,5 +1,5 @@
 // styles
-import "../src/styles/styles.scss";
+import "../src/styles/styles.css";
 
 // apollo
 import { ApolloProvider } from "@apollo/client";
@@ -8,7 +8,7 @@ import client from "../src/apollo/client";
 function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ApolloProvider>
   );
 }

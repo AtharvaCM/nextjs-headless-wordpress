@@ -2,8 +2,16 @@ import { gql } from "@apollo/client";
 
 import MenuFragment from "./fragments/menus";
 
-export const GET_MENUS = gql`
-headerMenus: menuItems(where: {location: HCMS_MENU_HEADER, parentId: "0"}) {
+const HeaderFooter = `
+header: getHeader {
+  favicon
+  siteLogoUrl
+  siteTagLine
+  siteTitle
+}
+headerMenus: menuItems(
+  where: { location: HCMS_MENU_HEADER, parentId: "0" }
+) {
   edges {
     node {
       ...MenuFragment
@@ -17,12 +25,28 @@ headerMenus: menuItems(where: {location: HCMS_MENU_HEADER, parentId: "0"}) {
     }
   }
 }
-footerMenus: menuItems(where: {location: HCMS_MENU_FOOTER, parentId: "0"}) {
+footer: getFooter {
+  copyrightText
+  sidebarOne
+  sidebarTwo
+  socialLinks {
+    iconName
+    iconUrl
+  }
+}
+footerMenus: menuItems(
+  where: { location: HCMS_MENU_FOOTER, parentId: "0" }
+) {
   edges {
     node {
       ...MenuFragment
     }
   }
 }
-${MenuFragment}
+}`;
+
+export const GET_MENUS = gql`
+  query MyQuery3 {
+    ${HeaderFooter}
+  ${MenuFragment}
 `;

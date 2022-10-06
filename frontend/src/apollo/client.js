@@ -20,7 +20,7 @@ const link = createHttpLink({
 });
 
 const client = new ApolloClient({
-  uri: link,
+  link,
   cache,
   defaultOptions,
 });
