@@ -2,16 +2,14 @@ import { gql } from "@apollo/client";
 
 import MenuFragment from "./fragments/menus";
 
-const HeaderFooter = `
+export const HeaderFooter = `
 header: getHeader {
   favicon
   siteLogoUrl
   siteTagLine
   siteTitle
 }
-headerMenus: menuItems(
-  where: { location: HCMS_MENU_HEADER, parentId: "0" }
-) {
+headerMenus: menuItems(where: {location: HCMS_MENU_HEADER, parentId: "0"}) {
   edges {
     node {
       ...MenuFragment
@@ -34,19 +32,18 @@ footer: getFooter {
     iconUrl
   }
 }
-footerMenus: menuItems(
-  where: { location: HCMS_MENU_FOOTER, parentId: "0" }
-) {
+footerMenus: menuItems(where: {location: HCMS_MENU_FOOTER, parentId: "0"}) {
   edges {
     node {
       ...MenuFragment
     }
   }
 }
-}`;
+`;
 
 export const GET_MENUS = gql`
-  query MyQuery3 {
+  query GetMenus {
     ${HeaderFooter}
+  }
   ${MenuFragment}
 `;

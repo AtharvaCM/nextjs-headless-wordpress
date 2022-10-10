@@ -8,11 +8,13 @@ import { GET_MENUS } from "../src/queries/get-menus";
 import Layout from "../src/components/layout";
 
 export default function Index({ data }) {
+  console.log("data: ", data);
+
   return <Layout data={data}></Layout>;
 }
 
 export async function getStaticProps() {
-  const { data, loading, networkStatus } = await client.query({
+  const { data } = await client.query({
     query: GET_MENUS,
   });
 
