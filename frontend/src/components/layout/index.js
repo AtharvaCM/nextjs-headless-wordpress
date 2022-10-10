@@ -1,14 +1,18 @@
 import React from "react";
 
+// next
+import Head from "next/head";
+
 // components
 import Header from "./header";
 import Footer from "./footer";
 
 const Layout = (props) => {
-  console.log("props.data: ", props.data);
-
   return (
     <div>
+      <Head>
+        <link rel="shortcut icon" href={props.data?.header?.favicon} />
+      </Head>
       <Header
         header={props.data?.header}
         headerMenus={props.data?.menus?.headerMenus}

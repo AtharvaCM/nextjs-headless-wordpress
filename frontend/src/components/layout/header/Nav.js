@@ -14,21 +14,28 @@ const Nav = (props) => {
   const [navbar, setNavbar] = useState(false);
 
   return (
-    <nav className="w-full bg-purple-500 shadow">
+    <nav className="w-full bg-violet-500 shadow">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         {/* Brand */}
         <div>
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
+          <div className="flex items-center justify-between py-3 md:py-4 md:block">
             <Link href="/">
               <a className="flex items-center">
                 <img
                   src={props.header?.favicon}
                   alt="NextJS Headless WordPress Logo"
-                  width={50}
+                  width={45}
+                  height={45}
+                  className="mr-3"
                 />
-                <h2 className="text-2xl font-bold text-white">
-                  {props.header.siteTitle}
-                </h2>
+                <div>
+                  <h2 className="text-2xl font-bold text-white">
+                    {props.header?.siteTitle}
+                  </h2>
+                  <span className="text-sm text-white">
+                    {props.header?.siteTagLine}
+                  </span>
+                </div>
               </a>
             </Link>
             <div className="md:hidden">
