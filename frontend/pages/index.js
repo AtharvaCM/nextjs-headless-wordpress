@@ -30,7 +30,7 @@ export async function getStaticProps() {
           headerMenus: data?.headerMenus?.edges || [],
           footerMenus: data?.footerMenus?.edges || [],
         },
-        page: data?.page || [],
+        page: data?.page || {},
       },
     },
     revalidate: 1,

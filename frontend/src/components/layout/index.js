@@ -15,9 +15,9 @@ import Seo from "../seo";
 import { sanitize } from "../../utils/misc";
 
 const Layout = (props) => {
-  if (isEmpty(props.data?.page)) {
-    return null;
-  }
+  // if (isEmpty(props.data?.page)) {
+  //   return null;
+  // }
 
   return (
     <div>
