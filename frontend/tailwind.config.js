@@ -8,7 +8,13 @@ module.exports = {
 
   content: ["./src/components/**/*.js", "./pages/**/*.js"],
 
-  theme: {},
+  theme: {
+    extend: {
+      height: {
+        "almost-screen": "calc(-16rem + 100vh)",
+      },
+    },
+  },
 
   variants: {},
 

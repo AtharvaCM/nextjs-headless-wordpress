@@ -58,8 +58,8 @@ const index = (props) => {
       {/* Copyright Text */}
       <div className="mb-8 mt-8 w-full flex flex-wrap">
         <div className="text-white w-full md:w-1/2 lg:w-1/4">
-          {props.footer.copyrightText
-            ? props.footer.copyrightText
+          {props.footer?.copyrightText
+            ? props.footer?.copyrightText
             : "© AtharvaCM 2022"}
         </div>
         <div className="flex justify-end w-full lg:w-3/4">

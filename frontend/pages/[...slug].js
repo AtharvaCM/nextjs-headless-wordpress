@@ -13,7 +13,14 @@ import client from "../src/apollo/client";
 import { GET_PAGES_URI } from "../src/queries/pages/get-pages";
 import { GET_PAGE } from "../src/queries/pages/get-page";
 
-const Pages = ({ data }) => {
+// components
+import Layout from "../src/components/layout/index";
+
+// utils
+import { isCustomPageUri } from "../src/utils/slugs";
+
+const Page = ({ data }) => {
+  console.log("data: ", data);
   const router = useRouter();
 
   // If the page is not yet generated, this will be displayed
@@ -22,10 +29,10 @@ const Pages = ({ data }) => {
     return <div>Loading...</div>;
   }
 
-  return router?.query?.slug.join("/");
+  return <Layout data={data}>{router?.query?.slug.join("/")}</Layout>;
 };
 
-export default Pages;
+export default Page;
 
 export async function getStaticProps({ params }) {
   const { data } = await client.query({
@@ -42,6 +49,8 @@ export async function getStaticProps({ params }) {
           headerMenus: data?.headerMenus?.edges || [],
           footerMenus: data?.footerMenus?.edges || [],
         },
+        header: data?.header,
+        footer: data?.footer,
         page: data?.page ?? {},
         paths: params?.slug.join("/"),
       },
@@ -64,7 +73,7 @@ export async function getStaticPaths() {
 
   data?.pages?.nodes &&
     data?.pages?.nodes.map((page) => {
-      if (!isEmpty(page?.uri)) {
+      if (!isEmpty(page?.uri) && !isCustomPageUri(page?.uri)) {
         const slugs = page?.uri?.split("/").filter((pageSlug) => pageSlug);
 
         pathsData.push({

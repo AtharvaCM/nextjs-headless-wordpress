@@ -1,21 +1,24 @@
 import { gql } from "@apollo/client";
 
 // queries
-import MenuFragment from "../fragments/menus";
 import { HeaderFooter } from "../get-menus";
+import MenuFragment from "../fragments/menus";
+import SeoFragment from "../fragments/seo";
 
 export const GET_PAGE = gql`
-  query GetPageByUri($uri: String) {
+  query GetPageByUri($uri: ID!) {
     ${HeaderFooter}
-    page: nodeByUri(uri: $uri) {
-      ... on Page {
-        id
-        slug
-        title
-        uri
-        content
+    page: page(id: $uri, idType: URI) {
+      id
+      slug
+      title
+      uri
+      content
+      seo {
+        ...SeoFragment
       }
     }
-    ${MenuFragment}
   }
+  ${MenuFragment}
+  ${SeoFragment}
 `;
