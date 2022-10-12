@@ -18,6 +18,7 @@ import Layout from "../src/components/layout/index";
 
 // utils
 import { isCustomPageUri } from "../src/utils/slugs";
+import { handleRedirectsAndReturnData } from "../src/utils/slugs";
 
 const Page = ({ data }) => {
   console.log("data: ", data);
@@ -35,25 +36,16 @@ const Page = ({ data }) => {
 export default Page;
 
 export async function getStaticProps({ params }) {
-  const { data } = await client.query({
+  const { data, errors } = await client.query({
     query: GET_PAGE,
     variables: {
       uri: params?.slug.join("/"),
     },
   });
 
-  return {
+  const defaultProps = {
     props: {
-      data: {
-        menus: {
-          headerMenus: data?.headerMenus?.edges || [],
-          footerMenus: data?.footerMenus?.edges || [],
-        },
-        header: data?.header,
-        footer: data?.footer,
-        page: data?.page ?? {},
-        paths: params?.slug.join("/"),
-      },
+      data: data || {},
     },
     /**
      * Revalidate means that if a new request comes to server, then every 1 sec it will check
@@ -62,6 +54,8 @@ export async function getStaticProps({ params }) {
      */
     revalidate: 1,
   };
+
+  return handleRedirectsAndReturnData(defaultProps, data, errors, "page");
 }
 
 export async function getStaticPaths() {

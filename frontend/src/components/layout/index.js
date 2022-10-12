@@ -15,37 +15,34 @@ import Seo from "../seo";
 import { sanitize } from "../../utils/misc";
 
 const Layout = (props) => {
-  // if (isEmpty(props.data?.page)) {
-  //   return null;
-  // }
+  if (isEmpty(props.data?.page)) {
+    return null;
+  }
+  console.log("props: ", props);
+
+  const { page, header, footer, headerMenus, footerMenus } = props.data || {};
 
   return (
     <div>
-      <Seo seo={props.page?.seo} uri={props.page?.uri} />
+      <Seo seo={page?.seo} uri={page?.uri} />
 
       <Head>
-        <link rel="shortcut icon" href={props.data?.header?.favicon} />
-        {props.page?.seo?.schemaDetails && (
+        <link rel="shortcut icon" href={header?.favicon} />
+        {page?.seo?.schemaDetails && (
           <script
             type="application/ld+json"
             className="yoast-schema-graph"
             key="yoastSchema"
             dangerouslySetInnerHTML={{
-              __html: sanitize(props.page?.seo?.schemaDetails),
+              __html: sanitize(page?.seo?.schemaDetails),
             }}
           />
         )}
       </Head>
 
-      <Header
-        header={props.data?.header}
-        headerMenus={props.data?.menus?.headerMenus}
-      />
+      <Header header={header} headerMenus={headerMenus?.edges} />
       <div className="h-almost-screen">{props.children}</div>
-      <Footer
-        footer={props.data?.footer}
-        footerMenus={props.data?.menus?.footerMenus}
-      />
+      <Footer footer={footer} footerMenus={footerMenus?.edges} />
     </div>
   );
 };
