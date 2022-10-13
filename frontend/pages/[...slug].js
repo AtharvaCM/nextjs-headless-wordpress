@@ -17,7 +17,7 @@ import { GET_PAGE } from "../src/queries/pages/get-page";
 import Layout from "../src/components/layout/index";
 
 // utils
-import { isCustomPageUri } from "../src/utils/slugs";
+import { FALLBACK, isCustomPageUri } from "../src/utils/slugs";
 import { handleRedirectsAndReturnData } from "../src/utils/slugs";
 
 const Page = ({ data }) => {
@@ -78,6 +78,6 @@ export async function getStaticPaths() {
 
   return {
     paths: pathsData,
-    fallback: true,
+    fallback: FALLBACK,
   };
 }
