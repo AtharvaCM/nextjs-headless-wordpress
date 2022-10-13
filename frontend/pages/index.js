@@ -13,7 +13,11 @@ import { handleRedirectsAndReturnData } from "../src/utils/slugs";
 const Index = ({ data }) => {
   console.log("data index: ", data);
 
-  return <Layout data={data}>Home</Layout>;
+  return (
+    <Layout data={data}>
+      <div className="text-red-400 min-h-full border-red-800">Homes</div>
+    </Layout>
+  );
 };
 
 export default Index;

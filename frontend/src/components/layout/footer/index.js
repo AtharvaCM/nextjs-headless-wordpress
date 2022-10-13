@@ -10,9 +10,6 @@ import { getIconComponentByName } from "../../../utils/icons-map";
 import Link from "next/link";
 
 const index = (props) => {
-  console.log("props.footer: ", props.footer);
-  console.log("props.footerMenus: ", props.footerMenus);
-
   if (isEmpty(props.footerMenus) || !isArray(props.footerMenus)) {
     console.log("empty");
     return null;

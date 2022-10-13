@@ -18,5 +18,5 @@ export default async function preview(req, res) {
     const previewUrl = getPreviewRedirectUrl(postType, postId);
     res.writeHead(307, { location: previewUrl });
   }
+  res.end();
 }
-res.end();

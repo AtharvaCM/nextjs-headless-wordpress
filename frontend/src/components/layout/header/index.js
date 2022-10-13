@@ -12,7 +12,7 @@ const index = (props) => {
   }
 
   return (
-    <header>
+    <header className="sticky top-0">
       <Nav header={props.header} headerMenus={props.headerMenus} />
     </header>
   );
