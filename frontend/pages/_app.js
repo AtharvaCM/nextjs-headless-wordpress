@@ -11,6 +11,7 @@ import "../src/styles/styles.scss";
 import { ApolloProvider } from "@apollo/client";
 import client from "../src/apollo/client";
 
+// Progress Bar
 NProgress.configure({ showSpinner: false });
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());

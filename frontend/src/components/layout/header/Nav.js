@@ -5,6 +5,7 @@ import { isEmpty } from "lodash";
 
 // next link
 import Link from "next/link";
+import { isCustomPageUri } from "../../../utils/slugs";
 
 const Nav = (props) => {
   if (isEmpty(props.headerMenus)) {
@@ -85,16 +86,19 @@ const Nav = (props) => {
           >
             {props.headerMenus?.length ? (
               <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                {props.headerMenus.map((menu) => (
-                  <li
-                    key={menu?.node?.id}
-                    className="text-white hover:text-indigo-200"
-                  >
-                    <Link href={menu?.node?.path}>
-                      <a>{menu.node.label}</a>
-                    </Link>
-                  </li>
-                ))}
+                {props.headerMenus.map((menu) => {
+                  if (!isCustomPageUri(menu?.node?.path))
+                    return (
+                      <li
+                        key={menu?.node?.id}
+                        className="text-white hover:text-indigo-200"
+                      >
+                        <Link href={menu?.node?.path}>
+                          <a>{menu.node.label}</a>
+                        </Link>
+                      </li>
+                    );
+                })}
                 <li className="text-white hover:text-indigo-200">
                   <Link href={"/blog/"}>
                     <a>Blog</a>
