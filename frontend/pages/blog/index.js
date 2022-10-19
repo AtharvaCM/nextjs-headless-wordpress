@@ -8,7 +8,7 @@ import { handleRedirectsAndReturnData } from "../../src/utils/slugs";
 
 // components
 import Layout from "../../src/components/layout";
-// import Pagination from "../../src/components/blog/pagination";
+import Pagination from "../../src/components/blog/pagination";
 import Posts from "../../src/components/blog/posts";
 
 const Blog = ({ data }) => {
@@ -18,7 +18,7 @@ const Blog = ({ data }) => {
   return (
     <Layout data={data}>
       <Posts posts={data?.posts?.edges ?? []} />
-      {/* <Pagination pagesCount={pagesCount} postName="blog" /> */}
+      <Pagination pagesCount={pagesCount} postName="blog" />
     </Layout>
   );
 };

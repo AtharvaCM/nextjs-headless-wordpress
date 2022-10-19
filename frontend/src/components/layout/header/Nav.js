@@ -95,6 +95,11 @@ const Nav = (props) => {
                     </Link>
                   </li>
                 ))}
+                <li className="text-white hover:text-indigo-200">
+                  <Link href={"/blog/"}>
+                    <a>Blog</a>
+                  </Link>
+                </li>
               </ul>
             ) : null}
 
