@@ -21,7 +21,6 @@ import { FALLBACK, isCustomPageUri } from "../src/utils/slugs";
 import { handleRedirectsAndReturnData } from "../src/utils/slugs";
 
 const Page = ({ data }) => {
-  console.log("data: ", data);
   const router = useRouter();
 
   // If the page is not yet generated, this will be displayed
@@ -42,6 +41,7 @@ export async function getStaticProps({ params }) {
       uri: params?.slug.join("/"),
     },
   });
+  console.log("staticPropsData: ", data);
 
   const defaultProps = {
     props: {
