@@ -73,22 +73,3 @@ export const GET_POST_SLUGS = gql`
     }
   }
 `;
-
-export const GET_POST_BY_ID = gql`
-	query GET_POST_BY_ID($id: ID!) {
-		${HeaderFooter}
-	  post(idType: DATABASE_ID, id: $id) {
-	    id
-	    title
-	    content
-	    slug
-	    uri
-	    seo {
-          ...SeoFragment
-        }
-		status
-	  }
-	}
-	${MenuFragment}
-	${SeoFragment}
-`;
